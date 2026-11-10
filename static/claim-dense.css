@@ -16,10 +16,12 @@
 .claim-page-dense textarea { min-height: 52px; height: 52px; padding: 5px 7px; width: 100%; max-width: 100%; }
 .claim-page-dense .button { min-height: 32px; padding: 5px 10px; }
 .claim-page-dense .item-cards { padding: 0 8px; }
-.claim-page-dense .item-card { margin: 5px 0; padding: 5px 8px 8px; }
+.claim-page-dense .item-card { margin: 4px 0; padding: 3px 7px 6px; }
 .claim-page-dense .item-card legend { font-size: 12px; }
-.claim-page-dense .item-fields { gap: 6px 9px; }
+.claim-page-dense .item-fields { gap: 4px 7px; }
 .claim-page-dense .item-fields .diff { min-height: 31px; padding: 4px 7px; }
+.claim-page-dense .item-fields .diff.diff-match { background: #dcfce7; color: #166534; }
+.claim-page-dense .item-fields .diff.diff-mismatch { background: #fef3c7; color: #854d0e; }
 .claim-page-dense .item-delete { padding-bottom: 5px; }
 .claim-page-dense .table-note { padding: 6px 10px; font-size: 11px; }
 .claim-page-dense .save-bar { padding: 8px 10px; gap: 8px; }
@@ -28,6 +30,9 @@
   .claim-page-dense .field-grid > .field label { margin: 0; }
   .claim-page-dense .field-grid .errorlist { grid-column: 2; }
   .claim-page-dense .item-fields { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (min-width: 1600px) {
+  .claim-page-dense .item-fields { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }
 @media (max-width: 650px) {
   .claim-page-dense .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

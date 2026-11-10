@@ -1,6 +1,7 @@
+{% load static %}
 <div class="print-actions">
-{% if perms.claims.view_claim %}<a class="button" href="{% url 'print_center' %}{% if claim.pk %}?q={{ claim.number|urlencode }}{% endif %}" target="_blank" rel="noopener">พิมพ์เอกสาร ↗</a>{% endif %}
-<button type="button" class="button clear-form-button" id="clear-form">ล้างค่า</button>
-<button type="button" class="button" id="undo-clear" hidden>คืนค่าก่อนล้าง</button>
+{% if perms.claims.view_claim %}{% if claim.pk %}<a class="button print-saved-document" href="{% url 'print_document' claim.pk %}?print=1"><svg class="ui-icon" aria-hidden="true"><use href="{% static 'lucide-icons.svg' %}#Printer"></use></svg> พิมพ์เอกสาร</a><a class="button" href="{% url 'claim_export' claim.pk %}"><svg class="ui-icon" aria-hidden="true"><use href="{% static 'lucide-icons.svg' %}#Download"></use></svg> ดาวน์โหลดเอกสาร (CSV)</a>{% else %}<a class="button print-saved-document" href="{% url 'print_center' %}"><svg class="ui-icon" aria-hidden="true"><use href="{% static 'lucide-icons.svg' %}#Printer"></use></svg> พิมพ์เอกสาร</a><span class="muted">บันทึกเอกสารก่อนดาวน์โหลด</span>{% endif %}{% endif %}
+<button type="button" class="button clear-form-button" id="clear-form"><svg class="ui-icon" aria-hidden="true"><use href="{% static 'lucide-icons.svg' %}#Eraser"></use></svg> ล้างค่า</button>
+<button type="button" class="button" id="undo-clear" hidden><svg class="ui-icon" aria-hidden="true"><use href="{% static 'lucide-icons.svg' %}#Undo2"></use></svg> คืนค่าก่อนล้าง</button>
 <span id="clear-form-status" class="muted" role="status"></span>
 </div>

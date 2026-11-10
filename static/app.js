@@ -1,5 +1,15 @@
 document.getElementById('print')?.addEventListener('click', () => window.print());
 const claimForm = document.getElementById('claim-form');
+if (claimForm) {
+  let dirty = false;
+  claimForm.addEventListener('input', () => { dirty = true; });
+  claimForm.addEventListener('change', () => { dirty = true; });
+  document.querySelectorAll('.print-saved-document').forEach(link => {
+    link.addEventListener('click', event => {
+      if (dirty && !confirm('มีข้อมูลที่ยังไม่ได้บันทึก ต้องการออกจากหน้านี้เพื่อพิมพ์เอกสารที่บันทึกไว้หรือไม่?')) event.preventDefault();
+    });
+  });
+}
 const undoClear = document.getElementById('undo-clear');
 const clearStatus = document.getElementById('clear-form-status');
 let beforeClear = null;
@@ -41,7 +51,12 @@ function updateRow(row) {
   const claim = row.querySelector('[name$="-st_claim"]');
   const deleted = row.querySelector('[name$="-DELETE"]');
   row.classList.toggle('deleted', Boolean(deleted?.checked));
-  row.querySelector('.diff').textContent = load.value !== '' && claim.value !== '' ? (Number(load.value) - Number(claim.value)).toFixed(3) : '—';
+  const output = row.querySelector('.diff');
+  const complete = load.value !== '' && claim.value !== '' && Number.isFinite(Number(load.value)) && Number.isFinite(Number(claim.value));
+  const difference = complete ? Math.round(Number(load.value) * 1000) - Math.round(Number(claim.value) * 1000) : null;
+  output.textContent = complete ? (difference / 1000).toFixed(3) : '—';
+  output.classList.toggle('diff-match', complete && difference === 0);
+  output.classList.toggle('diff-mismatch', complete && difference !== 0);
   row.querySelectorAll('input, select').forEach(input => {
     if (deleted?.checked && input.required) { input.dataset.wasRequired = '1'; input.required = false; }
     else if (!deleted?.checked && input.dataset.wasRequired) { input.required = true; delete input.dataset.wasRequired; }

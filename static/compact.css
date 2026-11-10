@@ -39,6 +39,15 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 @media print { .claim-navigation, .back-to-top { display: none !important; } .item-card { break-inside: avoid; } .item-fields { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 body { background: #f8fafc; }
+.language-toggle { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; border: 1px solid #d7e5f1; border-radius: 8px; background: #f8fbff; color: var(--blue); padding: 6px 10px; font: inherit; cursor: pointer; }
+.language-icon { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.language-current { font-weight: 700; font-size: 12px; }
+.language-next { color: #8292a3; font-size: 12px; }
+.language-divider { height: 14px; width: 1px; background: #cddce9; }
+.language-toggle:hover, .language-toggle:focus-visible { background: #eaf4ff; border-color: #8bbde0; }
+.mobile-language { display: none; }
+@media (max-width: 900px) { .mobile-language { display: flex; justify-content: flex-end; margin-bottom: 8px; } }
+@media print { .mobile-language, .language-toggle { display: none !important; } }
 input::placeholder, textarea::placeholder { color: #c5cdd6; opacity: 1; }
 .print-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .claim-status-form { margin: 0; min-width: 155px; }
@@ -93,6 +102,10 @@ input:not([type=checkbox]):not([type=hidden]), select { min-height: 35px; }
 textarea { resize: vertical; }
 .two-columns { gap: 12px; align-items: start; }
 .step { padding: 3px 6px; margin-right: 6px; }
+.ui-icon { width: 17px; height: 17px; flex: 0 0 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+.claim-page .panel-title h2 { display: flex; align-items: center; gap: 6px; }
+.claim-page .panel-title h2 .ui-icon { color: var(--blue); }
+.claim-page .panel-title h2 .step { margin-right: 0; }
 .breadcrumb { margin-bottom: 9px; }
 .items-table th { padding: 8px 7px; }
 .items-table td { padding: 6px; }

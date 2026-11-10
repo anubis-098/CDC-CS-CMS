@@ -1,5 +1,6 @@
 {% extends 'base.html' %}{% load static %}{% block title %}พิมพ์ {{ claim.number }}{% endblock %}{% block content %}
 <link rel="stylesheet" href="{% static 'print.css' %}">
+<script defer src="{% static 'print-document.js' %}"></script>
 <div class="heading print-toolbar"><a class="button" href="{% url 'print_center' %}">← กลับไปเลือกเอกสาร</a><div class="print-actions"><a class="button" href="{% url 'claim_export' claim.pk %}">↓ Export CSV</a><button class="button primary" id="print" type="button">Print / พิมพ์เอกสาร</button></div></div>
 <p class="print-toolbar">เอกสารนี้แสดงข้อมูลที่บันทึกแล้วเท่านั้น หากแก้ไขฟอร์ม กรุณาบันทึกก่อนพิมพ์</p>
 <article class="print-sheet">

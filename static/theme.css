@@ -1,0 +1,30 @@
+.theme-toggle { display: inline-grid; place-items: center; width: 36px; height: 36px; padding: 8px; border: 1px solid #d7e5f1; border-radius: 8px; background: #f8fbff; color: #006bb6; cursor: pointer; }
+.theme-toggle:hover, .theme-toggle:focus-visible { background: #eaf4ff; border-color: #8bbde0; }
+.theme-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.mobile-language { gap: 8px; }
+html[data-theme='dark'] { color-scheme: dark; --blue: #76bfff; --navy: #aad4f5; --bg: #0f1723; --line: #354357; --muted: #b0c0d1; --text: #e0eaf4; --scroll-track: #1b2736; --scroll-thumb: #566d86; --scroll-hover: #82bcf0; }
+html[data-theme='dark'] body, html[data-theme='dark'] .shell { background: #101824; color: var(--text); }
+html[data-theme='dark'] .sidebar, html[data-theme='dark'] header, html[data-theme='dark'] .panel, html[data-theme='dark'] .stat, html[data-theme='dark'] .save-bar, html[data-theme='dark'] .print-sheet, html[data-theme='dark'] .login { background: #1a2736; border-color: var(--line); color: var(--text); }
+html[data-theme='dark'] .brand span, html[data-theme='dark'] header > strong { color: var(--text); }
+html[data-theme='dark'] nav a[aria-current], html[data-theme='dark'] nav a:hover, html[data-theme='dark'] .step, html[data-theme='dark'] .count { background: #203f59; color: #a9d7ff; }
+html[data-theme='dark'] input, html[data-theme='dark'] select, html[data-theme='dark'] textarea { background: #101c29; color: #e0eaf4; border-color: #485d72; }
+html[data-theme='dark'] input::placeholder, html[data-theme='dark'] textarea::placeholder { color: #8294a7; }
+html[data-theme='dark'] .button, html[data-theme='dark'] .page-back, html[data-theme='dark'] .language-toggle, html[data-theme='dark'] .theme-toggle { background: #263a4c; border-color: #486078; color: #d5eaff !important; }
+html[data-theme='dark'] .button.primary { background: #176ba9; border-color: #328ac9; color: white !important; }
+html[data-theme='dark'] .button.clear-form-button { background: #a92b38; border-color: #cf5060; color: white !important; }
+html[data-theme='dark'] th, html[data-theme='dark'] .lookup-status { background: #243344; color: #bccddd; }
+html[data-theme='dark'] td, html[data-theme='dark'] .document-audit { border-color: var(--line); }
+html[data-theme='dark'] .lookup-popup { background: #1a2736; color: var(--text); border-color: #55718b; }
+html[data-theme='dark'] .lookup-option { border-color: var(--line); }
+html[data-theme='dark'] .lookup-option:hover, html[data-theme='dark'] .lookup-option[aria-selected=true] { background: #24465f; color: #c6e6ff; }
+html[data-theme='dark'] .item-fields .diff { background: #283a4a; color: #dbe9f5; }
+html[data-theme='dark'] .claim-page-dense .item-fields .diff.diff-match { background: #174b38; color: #b0f5ce; }
+html[data-theme='dark'] .claim-page-dense .item-fields .diff.diff-mismatch { background: #645011; color: #fff0a3; }
+html[data-theme='dark'] .badge { background: #344458; color: #e0eaf4; }
+html[data-theme='dark'] .badge.review { background: #594415; color: #ffe49b; }
+html[data-theme='dark'] .badge.processing { background: #194464; color: #b7e4ff; }
+html[data-theme='dark'] .badge.closed { background: #194d3a; color: #b5f0ce; }
+html[data-theme='dark'] .badge.cancelled { background: #592b36; color: #ffc3cd; }
+html[data-theme='dark'] .error-summary { background: #5a2933; color: #ffd0d5; }
+html[data-theme='dark'] .notice { background: #194d3a; color: #b5f0ce; }
+@media print { .theme-toggle { display: none !important; } html[data-theme='dark'] { color-scheme: light; --text: #21344b; --muted: #63758b; --line: #e4eaf1; --blue: #006bb6; } html[data-theme='dark'] body, html[data-theme='dark'] .shell, html[data-theme='dark'] .panel, html[data-theme='dark'] .print-sheet { background: white; color: #21344b; } html[data-theme='dark'] th { background: #f8fafc; color: #63758b; } }
