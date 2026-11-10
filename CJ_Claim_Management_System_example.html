@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CJ Logistics | Claim Management System</title>
+<style>
+:root{--blue:#0875c9;--blue2:#075ca8;--pale:#e8f4fd;--orange:#f7941d;--red:#ed1c24;--line:#cbd7e4;--text:#152238;--muted:#64748b;--bg:#f4f8fc}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Tahoma",sans-serif;color:var(--text);background:var(--bg)}
+.brand-stripe{height:8px;background:linear-gradient(155deg,#0875c9 0 28%,white 28% 33%,#ed1c24 33% 48%,white 48% 52%,#f7941d 52% 55%,white 55% 58%,#f7941d 58% 61%,white 61% 64%,#f7941d 64% 67%,white 67%)}
+header{background:white;border-bottom:1px solid var(--line);padding:14px 3%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:14px;font-weight:800;font-size:25px;color:#111}.mark{display:inline-flex;gap:3px;align-items:center}.drop{width:19px;height:27px;border-radius:70% 70% 65% 65%;transform:rotate(-28deg);display:inline-block}.drop.b{background:#0875c9}.drop.o{background:#f7941d;transform:rotate(28deg)}.drop.r{background:#ed1c24}
+.tagline{font-size:14px;color:#7b8492;font-weight:700;border-left:1px solid #b8c4d2;padding-left:16px;margin-left:5px}
+.topbar{background:var(--blue);color:white;padding:10px 3%;display:flex;justify-content:space-between;font-size:14px}
+main{max-width:1600px;margin:14px auto;padding:0 16px 20px}.page-title{font-size:22px;font-weight:700;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.panel{background:white;border:1px solid #d6e2ee;border-radius:6px;margin-bottom:12px;overflow:hidden}.panel-head{background:linear-gradient(90deg,#e2f1fc,#f5faff);padding:9px 14px;color:var(--blue2);font-weight:700;border-bottom:1px solid #d6e2ee}
+.panel-body{padding:14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fields{display:grid;grid-template-columns:150px minmax(0,1fr);gap:9px 10px;align-items:center}.fields label{text-align:right;font-size:14px}.req{color:var(--red);font-weight:bold}
+input,select,textarea{font:inherit;color:#1f2937;border:1px solid #b9c6d5;border-radius:4px;padding:7px 9px;min-width:0;width:100%;background:white}input:focus,select:focus,textarea:focus{outline:2px solid #9bd2ff;border-color:var(--blue)}input[readonly]{background:#f1f5f9;color:#475569}.inline{display:flex;gap:7px;align-items:center}.inline input{flex:1}.small-btn{border:1px solid #aab9ca;background:#f8fafc;border-radius:4px;padding:7px 10px;cursor:pointer}
+.table-wrap{overflow:auto}.items{width:100%;min-width:1250px;border-collapse:separate;border-spacing:0;font-size:13px}.items th{background:#eaf1f8;border:1px solid #cbd7e4;padding:9px 6px;text-align:center;white-space:nowrap}.items td{border:1px solid #d5dee8;padding:3px}.items input,.items select{padding:7px 6px;font-size:13px}.items .num{text-align:right}.items .diff{background:#f3f8fc;font-weight:700}.items .remark{min-width:170px}.items .delete{background:white;color:#b91c1c;border:1px solid #e5a8a8;border-radius:4px;padding:6px 9px;cursor:pointer}
+.actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:space-between;padding:12px 14px;background:#fbfdff;border-top:1px solid #dce5ee}.action-group{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid #aab9ca;background:#fff;color:#173b64;border-radius:5px;padding:10px 14px;font-weight:700;cursor:pointer}.btn.primary{background:var(--blue);border-color:var(--blue);color:white}.btn.danger{border-color:#ef4444;color:#dc2626}.btn:hover{filter:brightness(.97)}.status{font-size:13px;color:var(--muted);align-self:center}.footer{display:flex;gap:24px;flex-wrap:wrap;padding:12px 4px;color:#667085;font-size:12px;border-top:1px solid #d0dbe6}.notice{background:#fff8e8;border:1px solid #f6d58d;color:#805b13;padding:10px 12px;border-radius:5px;font-size:13px;margin-bottom:12px}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:125px minmax(0,1fr)}header{align-items:flex-start;flex-direction:column}.tagline{font-size:12px}.topbar{gap:10px;flex-wrap:wrap}}
+@media print{.topbar,.actions,.small-btn,.delete,.notice{display:none!important}body{background:white}main{max-width:none;margin:0;padding:0}.panel{break-inside:avoid}.items{min-width:0;font-size:9px}.items input,.items select{border:0;padding:2px}.brand-stripe{height:4px}}
+</style>
+</head>
+<body>
+<div class="brand-stripe"></div>
+<header>
+  <div class="logo"><span class="mark"><i class="drop b"></i><i class="drop o"></i><i class="drop r"></i></span><span>CJ LOGISTICS</span><span class="tagline">WE DESIGN LOGISTICS</span></div>
+  <div style="font-size:13px;color:#526174">Claim Management System</div>
+</header>
+<div class="topbar"><span>Main Menu　›　Search-Claim Dry　›　Add Claim Dry</span><span>User Name: <b id="userLabel">Administrator</b>　 |　Logout</span></div>
+<main>
+  <h1 class="page-title">▣ Add Claim Dry</h1>
+  <div class="notice"><b>Prototype version:</b> ข้อมูลจะบันทึกไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น ยังไม่ได้เชื่อมต่อฐานข้อมูลบริษัท และไม่ควรใช้ข้อมูลส่วนบุคคลจริงในการทดลอง</div>
+  <section class="panel">
+    <div class="panel-body">
+      <div class="grid">
+        <div class="fields">
+          <label>เลขที่เอกสาร <span class="req">*</span></label><input id="claimNo" value="CLM-2026-0001" required>
+          <label>ผู้สร้างเอกสาร <span class="req">*</span></label><input id="createdBy" value="admin" required>
+        </div>
+        <div class="fields">
+          <label>วันที่เอกสาร <span class="req">*</span></label><input id="docDate" type="date" required>
+          <label>สถานะเอกสาร <span class="req">*</span></label><select id="docStatus"><option>เปิดรายการ</option><option>รอตรวจสอบ</option><option>อยู่ระหว่างดำเนินการ</option><option>ปิดรายการ</option><option>ยกเลิก</option></select>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="grid">
+    <section class="panel">
+      <div class="panel-head">▣ ข้อมูลการเคลม</div>
+      <div class="panel-body fields">
+        <label>แผนก <span class="req">*</span></label><input id="department" placeholder="เช่น 88" required>
+        <label>ชื่อแผนก</label><input id="departmentName" placeholder="ชื่อแผนก">
+        <label>สาขา <span class="req">*</span></label><input id="branch" placeholder="รหัสสาขา" required>
+        <label>ชื่อสาขา</label><input id="branchName" placeholder="ชื่อสาขา">
+        <label>ผู้แจ้งเคลม <span class="req">*</span></label><input id="reporter" placeholder="ชื่อผู้แจ้งเคลม" required>
+        <label>ตำแหน่ง</label><input id="reporterPosition" placeholder="ตำแหน่ง">
+        <label>ผู้อนุมัติ</label><input id="approver" placeholder="ชื่อผู้อนุมัติ">
+        <label>ตำแหน่งผู้อนุมัติ</label><input id="approverPosition" placeholder="ตำแหน่ง">
+        <label>วันที่รับสินค้า</label><input id="receivedDate" type="date">
+        <label>เวลารับสินค้า</label><input id="receivedTime" type="time">
+        <label>วันที่รับเอกสาร</label><input id="paperDate" type="date">
+        <label>เวลารับเอกสาร</label><input id="paperTime" type="time">
+        <label>คลัง <span class="req">*</span></label><select id="warehouse"><option value="">-- เลือกคลัง --</option><option>MKO</option><option>CDC</option><option>FC</option><option>อื่น ๆ</option></select>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="panel-head">▣ ข้อมูลขนส่ง</div>
+      <div class="panel-body fields">
+        <label>บริษัทขนส่ง</label><input id="carrier" placeholder="บริษัทขนส่ง">
+        <label>รหัสรถ</label><input id="vehicleCode" placeholder="รหัสรถ">
+        <label>ทะเบียนรถ</label><input id="plate" placeholder="ทะเบียนรถ">
+        <label>ประเภทรถ</label><input id="vehicleType" placeholder="ประเภทรถ">
+        <label>พนักงานขับรถ</label><input id="driver" placeholder="ชื่อพนักงานขับรถ">
+        <label>สภาพซีล</label><select id="sealStatus"><option>ปกติ</option><option>ชำรุด</option><option>ไม่มีซีล</option><option>ไม่เกี่ยวข้อง</option></select>
+        <label>รหัสซีล</label><input id="sealCode" placeholder="รหัสซีล">
+        <label>ข้อมูลเพิ่มเติม</label><textarea id="extraInfo" rows="2" placeholder="ข้อมูลเพิ่มเติม"></textarea>
+      </div>
+    </section>
+  </div>
+  <section class="panel">
+    <div class="panel-head">▤ รายการสินค้า</div>
+    <div class="table-wrap">
+      <table class="items" id="itemTable">
+        <thead><tr><th>No.</th><th>สถานะเอกสาร</th><th>Load No.</th><th>รหัสสินค้า</th><th>ชื่อสินค้า</th><th>Supplier</th><th>Shipment no.</th><th>PO no.</th><th>Load</th><th>ST claim</th><th>Diff</th><th>Remark</th><th>ลบ</th></tr></thead>
+        <tbody id="itemsBody"></tbody>
+      </table>
+    </div>
+    <div class="actions">
+      <div class="action-group"><button class="btn primary" id="addRow">＋ เพิ่มรายการ</button><button class="btn" id="deleteSelected">▤ ลบรายการที่เลือก</button></div>
+      <div class="action-group"><button class="btn primary" id="saveBtn">▣ บันทึก</button><button class="btn" id="exportBtn">⇩ Export Excel (CSV)</button><button class="btn" id="printBtn">▣ พิมพ์เอกสาร</button><button class="btn danger" id="clearBtn">✕ ล้างฟอร์ม</button></div>
+      <span class="status" id="statusMsg" role="status">พร้อมใช้งาน</span>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-head">▤ รายการเคลมที่บันทึกไว้ในเครื่องนี้</div>
+    <div class="table-wrap"><table class="items" style="min-width:700px"><thead><tr><th>เลขที่เอกสาร</th><th>วันที่</th><th>สาขา</th><th>ผู้แจ้งเคลม</th><th>สถานะ</th><th>โหลดข้อมูล</th><th>ลบ</th></tr></thead><tbody id="savedBody"></tbody></table></div>
+  </section>
+  <div class="footer"><span>Create by: <b id="footerCreated">admin</b></span><span>Create date: <span id="createdAt">-</span></span><span>Update by: <span id="updatedBy">-</span></span><span>Update date: <span id="updatedAt">-</span></span><span style="margin-left:auto;font-weight:bold">WE DESIGN LOGISTICS</span></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const fieldIds=['claimNo','createdBy','docDate','docStatus','department','departmentName','branch','branchName','reporter','reporterPosition','approver','approverPosition','receivedDate','receivedTime','paperDate','paperTime','warehouse','carrier','vehicleCode','plate','vehicleType','driver','sealStatus','sealCode','extraInfo'];
+const today=new Date(); const localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+$('docDate').value=localDate;$('paperDate').value=localDate;
+let saved=JSON.parse(localStorage.getItem('cjClaimRecordsDemo')||'[]');let createdStamp=new Date().toLocaleString('th-TH');
+function setStatus(s){$('statusMsg').textContent=s}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function addRow(data={}){
+ const tr=document.createElement('tr');const n=$('itemsBody').children.length+1;
+ tr.innerHTML=`<td style="text-align:center"><input type="checkbox" class="row-check" aria-label="เลือกรายการ ${n}" style="width:auto"></td>
+ <td><select class="item-status"><option>เปิดรายการ</option><option>รอตรวจสอบ</option><option>ปิดรายการ</option></select></td>
+ <td><input data-k="loadNo" value="${escapeHtml(data.loadNo||'')}" placeholder="Load No."></td>
+ <td><input data-k="itemCode" value="${escapeHtml(data.itemCode||'')}" placeholder="รหัสสินค้า"></td>
+ <td><input data-k="itemName" value="${escapeHtml(data.itemName||'')}" placeholder="ชื่อสินค้า"></td>
+ <td><input data-k="supplier" value="${escapeHtml(data.supplier||'')}" placeholder="Supplier"></td>
+ <td><input data-k="shipmentNo" value="${escapeHtml(data.shipmentNo||'')}" placeholder="Shipment no."></td>
+ <td><input data-k="poNo" value="${escapeHtml(data.poNo||'')}" placeholder="PO no."></td>
+ <td><input data-k="load" class="num load" type="number" min="0" step="0.001" value="${escapeHtml(data.load??'')}" placeholder="0.000"></td>
+ <td><input data-k="stClaim" class="num claim" type="number" min="0" step="0.001" value="${escapeHtml(data.stClaim??'')}" placeholder="0.000"></td>
+ <td><input data-k="diff" class="num diff" readonly value="${escapeHtml(data.diff??'')}" placeholder="Auto"></td>
+ <td><input data-k="remark" class="remark" value="${escapeHtml(data.remark||'')}" placeholder="Remark"></td>
+ <td style="text-align:center"><button type="button" class="delete" title="ลบรายการ">🗑</button></td>`;
+ $('itemsBody').appendChild(tr);
+ if(data.status)tr.querySelector('.item-status').value=data.status;
+ tr.querySelectorAll('.load,.claim').forEach(inp=>inp.addEventListener('input',()=>calcDiff(tr)));
+ tr.querySelector('.delete').addEventListener('click',()=>{tr.remove();renumber();setStatus('ลบรายการแล้ว')});
+ calcDiff(tr);renumber();
+}
+function calcDiff(tr){const a=parseFloat(tr.querySelector('.load').value),b=parseFloat(tr.querySelector('.claim').value);tr.querySelector('.diff').value=Number.isFinite(a)&&Number.isFinite(b)?(a-b).toFixed(3):''}
+function renumber(){[...$('itemsBody').rows].forEach((r,i)=>r.cells[0].querySelector('input').setAttribute('aria-label','เลือกรายการ '+(i+1)))}
+function getItems(){return [...$('itemsBody').rows].map(tr=>{const o={status:tr.querySelector('.item-status').value};tr.querySelectorAll('[data-k]').forEach(i=>o[i.dataset.k]=i.value);return o})}
+function getForm(){const o={};fieldIds.forEach(id=>o[id]=$(id).value);o.items=getItems();o.createdAt=createdStamp;o.updatedAt=new Date().toLocaleString('th-TH');return o}
+function fillForm(o){fieldIds.forEach(id=>{if(o[id]!==undefined)$(id).value=o[id]});$('itemsBody').innerHTML='';(o.items?.length?o.items:[{}]).forEach(addRow);$('createdAt').textContent=o.createdAt||'-';$('updatedAt').textContent=o.updatedAt||'-';$('updatedBy').textContent=o.createdBy||'-';$('footerCreated').textContent=o.createdBy||'-';setStatus('โหลดข้อมูลแล้ว')}
+function persist(){localStorage.setItem('cjClaimRecordsDemo',JSON.stringify(saved));renderSaved()}
+function save(){
+ const required=[['claimNo','เลขที่เอกสาร'],['docDate','วันที่เอกสาร'],['department','แผนก'],['branch','สาขา'],['reporter','ผู้แจ้งเคลม'],['warehouse','คลัง']];
+ for(const [id,label] of required){if(!$(id).value.trim()){alert('กรุณากรอก'+label);$(id).focus();return}}
+ if(!$('itemsBody').rows.length){alert('กรุณาเพิ่มรายการสินค้าอย่างน้อย 1 รายการ');return}
+ const o=getForm();const idx=saved.findIndex(x=>x.claimNo===o.claimNo);if(idx>=0)saved[idx]=o;else saved.unshift(o);persist();
+ $('createdAt').textContent=o.createdAt;$('updatedAt').textContent=o.updatedAt;$('updatedBy').textContent=o.createdBy;$('footerCreated').textContent=o.createdBy;
+ setStatus('บันทึกข้อมูลในเบราว์เซอร์แล้ว');alert('บันทึกข้อมูลเรียบร้อย (บันทึกไว้ในเบราว์เซอร์เครื่องนี้)');
+}
+function renderSaved(){const body=$('savedBody');body.innerHTML='';saved.forEach((o,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${escapeHtml(o.claimNo)}</td><td>${escapeHtml(o.docDate)}</td><td>${escapeHtml(o.branch)} ${escapeHtml(o.branchName||'')}</td><td>${escapeHtml(o.reporter)}</td><td>${escapeHtml(o.docStatus)}</td><td><button class="small-btn">โหลด</button></td><td><button class="delete">ลบ</button></td>`;tr.cells[5].querySelector('button').onclick=()=>fillForm(o);tr.cells[6].querySelector('button').onclick=()=>{if(confirm('ต้องการลบ '+o.claimNo+' หรือไม่?')){saved.splice(i,1);persist()}};body.appendChild(tr)})}
+function csvCell(v){let s=String(v??'');if(/^[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"'}
+function exportCSV(){
+ const o=getForm();const headers=['Claim No','Document Date','Status','Department','Department Name','Branch','Branch Name','Reporter','Approver','Warehouse','Carrier','Vehicle Plate','Driver','Load No','Item Code','Item Name','Supplier','Shipment No','PO No','Load','ST claim','Diff','Remark'];
+ const rows=[headers];o.items.forEach(it=>rows.push([o.claimNo,o.docDate,o.docStatus,o.department,o.departmentName,o.branch,o.branchName,o.reporter,o.approver,o.warehouse,o.carrier,o.plate,o.driver,it.loadNo,it.itemCode,it.itemName,it.supplier,it.shipmentNo,it.poNo,it.load,it.stClaim,it.diff,it.remark]));
+ const csv='\uFEFF'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(o.claimNo||'claim-data').replace(/[^\w.-]/g,'_')+'.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);setStatus('Export CSV สำหรับเปิดด้วย Excel แล้ว');
+}
+$('addRow').onclick=()=>{addRow();setStatus('เพิ่มรายการสินค้าแล้ว')};
+$('deleteSelected').onclick=()=>{const rows=[...$('itemsBody').rows];let count=0;rows.forEach(r=>{if(r.querySelector('.row-check').checked){r.remove();count++}});renumber();setStatus(`ลบ ${count} รายการแล้ว`)};
+$('saveBtn').onclick=save;$('exportBtn').onclick=exportCSV;$('printBtn').onclick=()=>window.print();
+$('clearBtn').onclick=()=>{if(confirm('ล้างข้อมูลในฟอร์มนี้หรือไม่? ข้อมูลที่บันทึกไว้ในรายการด้านล่างจะไม่ถูกลบ')){fieldIds.forEach(id=>$(id).value='');$('docDate').value=localDate;$('itemsBody').innerHTML='';addRow();setStatus('ล้างฟอร์มแล้ว')}};
+$('createdBy').addEventListener('input',()=>{$('userLabel').textContent=$('createdBy').value||'Administrator';$('footerCreated').textContent=$('createdBy').value});
+addRow();renderSaved();
+</script>
+</body>
+</html>

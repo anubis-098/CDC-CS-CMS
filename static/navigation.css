@@ -1,0 +1,8 @@
+.page-back-bar { position: sticky; top: 10px; z-index: 30; width: fit-content; margin-bottom: 12px; }
+.page-back { display: inline-flex; align-items: center; gap: 7px; min-height: 40px; padding: 8px 12px; border: 1px solid #d7e0ea; border-radius: 20px; color: #006bb6 !important; background: #fff; box-shadow: 0 2px 8px #102d501a; font: 13px 'Sarabun', sans-serif; text-decoration: none; transition: background .15s, color .15s, box-shadow .15s; }
+.page-back svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.page-back:hover, .page-back:focus-visible { color: #fff !important; background: #006bb6; border-color: #006bb6; box-shadow: 0 4px 12px #102d5033; }
+.page-back:focus-visible { outline: 2px solid #006bb6; outline-offset: 3px; }
+@media (max-width: 650px) { .page-back { min-height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .page-back { transition: none; } }
+@media print { .page-back-bar { display: none !important; } }

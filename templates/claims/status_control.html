@@ -1,0 +1,10 @@
+{% if perms.claims.change_claim %}
+<form class="claim-status-form" method="post" action="{% url 'claim_status' claim.pk %}">
+  {% csrf_token %}<input type="hidden" name="previous_status" value="{{ claim.status }}">
+  <input type="hidden" name="version" value="{{ claim.updated_at|date:'c' }}">
+  <select name="status" class="badge status-select {{ claim.status }}" aria-label="สถานะเอกสาร {{ claim.number }}" aria-describedby="status-message-{{ claim.pk }}">
+    {% for value,label in statuses %}<option value="{{ value }}" {% if claim.status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+  </select>
+  <span class="status-message" id="status-message-{{ claim.pk }}" role="status"></span>
+</form>
+{% else %}<span class="badge {{ claim.status }}">{{ claim.get_status_display }}</span>{% endif %}

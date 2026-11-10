@@ -1,0 +1,41 @@
+/* New-claim screen: compact spacing without clipping fields or errors. */
+.claim-page-dense .breadcrumb { margin-bottom: 4px; font-size: 11px; }
+.claim-page-dense .heading { margin-bottom: 8px; gap: 8px; }
+.claim-page-dense .heading .eyebrow { display: none; }
+.claim-page-dense h1 { font-size: 22px; margin: 0; }
+.claim-page-dense .heading p { margin: 2px 0 0; font-size: 12px; }
+.claim-page-dense .panel { margin-bottom: 8px; border-radius: 6px; }
+.claim-page-dense .panel-title { padding: 7px 10px; gap: 6px; }
+.claim-page-dense .panel-title h2 { font-size: 14px; }
+.claim-page-dense .step { padding: 2px 5px; font-size: 10px; }
+.claim-page-dense .two-columns { gap: 8px; }
+.claim-page-dense .field-grid { padding: 8px 10px; gap: 6px 10px; }
+.claim-page-dense .field label { margin-bottom: 2px; font-size: 12px; line-height: 1.4; }
+.claim-page-dense input:not([type=checkbox]):not([type=hidden]),
+.claim-page-dense select { min-height: 31px; height: 31px; padding: 4px 7px; width: 100%; max-width: 100%; }
+.claim-page-dense textarea { min-height: 52px; height: 52px; padding: 5px 7px; width: 100%; max-width: 100%; }
+.claim-page-dense .button { min-height: 32px; padding: 5px 10px; }
+.claim-page-dense .item-cards { padding: 0 8px; }
+.claim-page-dense .item-card { margin: 5px 0; padding: 5px 8px 8px; }
+.claim-page-dense .item-card legend { font-size: 12px; }
+.claim-page-dense .item-fields { gap: 6px 9px; }
+.claim-page-dense .item-fields .diff { min-height: 31px; padding: 4px 7px; }
+.claim-page-dense .item-delete { padding-bottom: 5px; }
+.claim-page-dense .table-note { padding: 6px 10px; font-size: 11px; }
+.claim-page-dense .save-bar { padding: 8px 10px; gap: 8px; }
+@media (min-width: 1280px) {
+  .claim-page-dense .field-grid > .field { display: grid; grid-template-columns: 104px minmax(0, 1fr); align-items: center; gap: 4px; }
+  .claim-page-dense .field-grid > .field label { margin: 0; }
+  .claim-page-dense .field-grid .errorlist { grid-column: 2; }
+  .claim-page-dense .item-fields { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (max-width: 650px) {
+  .claim-page-dense .field-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .claim-page-dense input:not([type=checkbox]):not([type=hidden]),
+  .claim-page-dense select { min-height: 38px; height: 38px; font-size: 16px; }
+  .claim-page-dense textarea { font-size: 16px; }
+  .claim-page-dense .button { min-height: 40px; }
+}
+@media (max-width: 400px) {
+  .claim-page-dense .field-grid { grid-template-columns: minmax(0, 1fr); }
+}

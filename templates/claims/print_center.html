@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<div class="heading"><div><div class="eyebrow">PRINT & EXPORT</div><h1>พิมพ์เอกสาร</h1><p>เลือกเอกสารที่บันทึกแล้วเพื่อ Export CSV หรือเปิดหน้าพิมพ์ · แสดงเอกสารทุกสถานะ</p></div></div>
+<section class="panel">
+<form class="filters" method="get"><label>ค้นหาเอกสาร<input name="q" value="{{ request.GET.q }}" placeholder="เลขที่เอกสาร สาขา หรือผู้แจ้งเคลม"></label><label>สถานะ<select name="status"><option value="">ทุกสถานะ</option>{% for value,label in statuses %}<option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></label><button class="button primary">ค้นหา</button><a class="button" href="{% url 'print_center' %}">ล้างตัวกรอง</a></form>
+<div class="panel-title"><h2>เลือกเอกสาร <span class="count">{{ page.paginator.count }}</span></h2></div>
+<div class="table-wrap"><table><thead><tr><th>เลขที่เอกสาร</th><th>วันที่</th><th>สาขา / ผู้แจ้ง</th><th>สถานะ</th><th>เลือกดำเนินการ</th></tr></thead><tbody>
+{% for claim in page %}<tr><td><a href="{% url 'print_document' claim.pk %}">{{ claim.number }}</a></td><td>{{ claim.document_date|date:'d/m/Y' }}</td><td>{{ claim.branch }} {{ claim.branch_name }}<small>{{ claim.reporter }}</small></td><td><span class="badge {{ claim.status }}">{{ claim.get_status_display }}</span></td><td><div class="print-actions"><a class="button" href="{% url 'claim_export' claim.pk %}">↓ Export CSV</a><a class="button primary" href="{% url 'print_document' claim.pk %}">เปิดหน้าพิมพ์ →</a></div></td></tr>
+{% empty %}<tr><td colspan="5"><div class="empty"><h3>ไม่พบเอกสารที่บันทึกแล้ว</h3><p>บันทึกฟอร์มเคลมให้สำเร็จก่อน หรือปรับเงื่อนไขค้นหา</p></div></td></tr>{% endfor %}
+</tbody></table></div>
+<div class="pagination">{% if page.has_previous %}<a href="?q={{ request.GET.q|urlencode }}&status={{ request.GET.status|urlencode }}&page={{ page.previous_page_number }}">← ก่อนหน้า</a>{% endif %}<span>หน้า {{ page.number }} / {{ page.paginator.num_pages }}</span>{% if page.has_next %}<a href="?q={{ request.GET.q|urlencode }}&status={{ request.GET.status|urlencode }}&page={{ page.next_page_number }}">ถัดไป →</a>{% endif %}</div>
+</section>{% endblock %}

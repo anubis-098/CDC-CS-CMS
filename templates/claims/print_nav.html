@@ -1,0 +1,1 @@
+{% if perms.claims.view_claim %}<a href="{% url 'print_center' %}" {% if '/print/' in request.path %}aria-current="page"{% endif %}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H3V9h18v9h-3M6 14h12v7H6zM17 12h1"/></svg><span>พิมพ์เอกสาร</span></a>{% endif %}

@@ -1,0 +1,2 @@
+<input type="hidden" name="version" value="{{ version }}">
+{% if conflict %}<div class="error-summary" role="alert"><strong>มีผู้ใช้อื่นบันทึกเอกสารนี้แล้ว — ยังไม่ได้บันทึกข้อมูลของคุณ</strong><p>ข้อมูลที่คุณกรอกยังคงอยู่ในหน้านี้ เปิดฉบับล่าสุดในแท็บใหม่เพื่อเปรียบเทียบและนำข้อมูลที่ต้องการไปบันทึก</p><a class="button" href="{% url 'claim_edit' claim.pk %}" target="_blank" rel="noopener">เปิดข้อมูลล่าสุด ↗</a></div>{% endif %}

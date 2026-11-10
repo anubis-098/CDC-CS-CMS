@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<section class="panel login"><div class="eyebrow">CDC WORKSPACE</div><h1>เข้าสู่ระบบ</h1><p>Claim Management System</p><form method="post">{% csrf_token %}{{ form.as_p }}<input type="hidden" name="next" value="{{ next }}"><button class="button primary">เข้าสู่ระบบ →</button></form></section>{% endblock %}

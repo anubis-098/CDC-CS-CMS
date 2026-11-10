@@ -1,0 +1,6 @@
+.lookup-popup { position: fixed; z-index: 100; overflow-y: auto; overscroll-behavior: contain; background: white; color: #21344b; border: 1px solid #a9cde9; border-radius: 6px; box-shadow: 0 6px 22px #102d5026; font: 13px 'Sarabun', sans-serif; }
+.lookup-popup[hidden] { display: none; }
+.lookup-option { padding: 9px 11px; min-height: 38px; cursor: pointer; white-space: normal; overflow-wrap: anywhere; border-bottom: 1px solid #edf1f6; }
+.lookup-option:hover, .lookup-option[aria-selected=true] { background: #eaf4ff; color: #006bb6; }
+.lookup-status { padding: 7px 11px; font-size: 11px; color: #63758b; background: #f8fafc; }
+@media print { .lookup-popup { display: none !important; } }

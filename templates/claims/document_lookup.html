@@ -1,0 +1,9 @@
+<div class="document-lookup table-note">
+{% if claim.pk %}
+  <span id="document-lookup-status" role="status">กำลังแก้ไขเอกสารเดิม · บันทึกจะอัปเดตเลขที่ {{ claim.number }}<br>แก้ไขล่าสุด {{ claim.updated_at|date:'d/m/Y H:i:s' }} โดย {{ claim.updated_by }}</span>
+  <a href="{% url 'claim_new' %}" class="button">เลือกเลขที่อื่น / สร้างใหม่</a>
+{% else %}
+  <button type="button" class="button" id="load-document">โหลดเลขที่เอกสาร</button>
+  <span id="document-lookup-status" role="status">กรอกเลขเดิมแล้วออกจากช่องเพื่อโหลดข้อมูล หรือเว้นว่างเพื่อให้ระบบสร้างเลขใหม่</span>
+{% endif %}
+</div>

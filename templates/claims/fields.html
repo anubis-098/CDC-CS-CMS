@@ -1,0 +1,1 @@
+{% for field in fields %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }} {% if field.field.required %}<em>*</em>{% endif %}</label>{{ field }}{{ field.errors }}</div>{% endfor %}

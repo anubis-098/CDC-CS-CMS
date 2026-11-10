@@ -1,0 +1,14 @@
+<fieldset class="item-row item-card">
+  <legend>รายการสินค้า</legend>
+  {{ item.id }}{{ item.id.errors }}{{ item.non_field_errors }}
+  <div class="item-fields">
+    {% for field in item.visible_fields %}{% if field.name != 'DELETE' %}
+    <div class="field item-field-{{ field.name }}">
+      <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} <em>*</em>{% endif %}</label>
+      {{ field }}{{ field.errors }}
+    </div>
+    {% endif %}{% endfor %}
+    <div class="field"><label for="{{ item.prefix }}-diff">Diff</label><output id="{{ item.prefix }}-diff" class="diff" aria-live="polite">0.000</output></div>
+    <div class="item-delete"><label for="{{ item.DELETE.id_for_label }}">{{ item.DELETE }} ลบรายการนี้</label></div>
+  </div>
+</fieldset>

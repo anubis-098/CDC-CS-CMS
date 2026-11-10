@@ -1,0 +1,6 @@
+<div class="print-actions">
+{% if perms.claims.view_claim %}<a class="button" href="{% url 'print_center' %}{% if claim.pk %}?q={{ claim.number|urlencode }}{% endif %}" target="_blank" rel="noopener">พิมพ์เอกสาร ↗</a>{% endif %}
+<button type="button" class="button clear-form-button" id="clear-form">ล้างค่า</button>
+<button type="button" class="button" id="undo-clear" hidden>คืนค่าก่อนล้าง</button>
+<span id="clear-form-status" class="muted" role="status"></span>
+</div>
